@@ -17,30 +17,41 @@ void popseq(char *fname, char *arr)
 
 }
 
+int maxseqinc(char *arr, int len, int amt, int inc)
+{
+    int cnt = 0, off = 0, max = 0, tmp;
+    int j;
+
+    while(cnt <= len - inc*amt) {
+        tmp = 1;
+        for(off = 0; off < amt; off += inc)
+            if(arr[cnt+off] != 0)
+                tmp *= arr[cnt+off];
+            else
+                break;
+        // terminated early due to zero, so just advanced cnt past it
+        if(off < amt)
+            cnt += off+inc;
+        else if(tmp > max) {
+            max = tmp;
+            printf(" > max is now %d, @ cnt = %d\n", max, cnt);
+            printf("cnt vals: ");
+            for(j = 0; j < amt; j++)
+                printf("%d,", arr[cnt+j*inc]);
+            printf("\n");
+        }
+
+        cnt += inc;
+
+    }
+
+}
+
 int main(void)
 {
     char num[1000];
     int cnt = 0, off=0, max=0, tmp;
     popseq("p8.txt", &num[0]);
 
-    while(cnt <= 995) {
-        tmp = 1;
-        for(off = 0; off < 5; off++)
-            if(num[cnt+off] != 0)
-                tmp *= num[cnt+off];
-            else
-                break;
-        // terminated early due to zero, so just advanced cnt past it
-        if(off < 5)
-            cnt += off+1;
-        else if(tmp > max) {
-            max = tmp;
-            printf(" > max is now %d, @ cnt = %d\n", max, cnt);
-            printf("cnt vals: %d, %d, %d, %d, %d\n", num[cnt], num[cnt+1], num[cnt+2], num[cnt+3], num[cnt+4]);
-        }
-
-        cnt += 1;
-
-    }
-
+    maxseqinc(num, 1000, 5, 1);
 }
