@@ -42,15 +42,15 @@ int maxseqinc(char *arr, int len, int amt, int inc)
         }
 
         cnt += inc;
-
     }
+
+    return max;
 
 }
 
 int main(void)
 {
     char num[1000];
-    int cnt = 0, off=0, max=0, tmp;
     popseq("p8.txt", &num[0]);
 
     maxseqinc(num, 1000, 5, 1);
