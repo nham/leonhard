@@ -42,13 +42,6 @@ int maxseqinc(char *arr, int len, int amt, int inc)
             cnt += off+inc;
         else if(tmp > max) {
             max = tmp;
-            /*
-            printf(" > max is now %d, @ cnt = %d\n", max, cnt);
-            printf("cnt vals: ");
-            for(j = 0; j < amt; j++)
-                printf("%d,", arr[cnt+j*inc]);
-            printf("\n");
-            */
         }
 
         cnt += inc;
