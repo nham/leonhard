@@ -4,7 +4,6 @@ import "fmt"
 
 func divides(a, b int) bool {
     return a%b == 0
-
 }
 
 func main() {
