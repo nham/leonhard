@@ -9,6 +9,8 @@ func divides(a, b int) bool {
     return a%b == 0
 }
 
+// A slice of all prime factors, with repetitions
+// prime_factorize(60) = [2, 2, 3, 5]
 func prime_factorize(n int) []uint {
     factors := make([]uint, 20)
     i := 0
@@ -43,21 +45,27 @@ func isPrime(x int) bool {
     return true
 }
 
-func tallyPowers(a []uint) []uint {
-    powers := make([]uint, 20)
+func tallyPowers(a []uint) map[int]uint {
+    powers := make(map[int]uint)
+    var p int
 
     for i := 0; a[i] != 0; i++ {
-        powers[a[i]] += 1
+        p = int(a[i])
+        _, ok := powers[p]
+
+        if ok == false {
+            powers[p] = 1
+        } else {
+            powers[p] += 1
+        }
     }
 
     return powers
 }
 
 func main() {
-    factorPowers := make([]uint, 20)
-    for i := 0; i < 20; i++ {
-        factorPowers[i] = 0
-    }
+    factorPowers := map[int]uint{
+        2: 0, 3: 0, 5: 0, 7: 0, 11: 0, 13: 0, 17: 0, 19: 0}
 
     for i := 2; i <= 20; i++ {
         factors := prime_factorize(i)
