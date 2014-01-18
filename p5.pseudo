@@ -1,5 +1,0 @@
-list the prime factorization of each of the integers from 1 to 20
-
-n = 1
-for p = primes < 20:
-    n = n * p^k, k is the biggest power from the list
